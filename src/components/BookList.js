@@ -1,11 +1,13 @@
 import BookShow from "./BookShow";
+import useBookContext from "../hooks/BookContext";
 
-// eslint-disable-next-line react/prop-types
-export default function BookList({ books, onDelete, onEdit }) {
-  // eslint-disable-next-line react/prop-types
+
+export default function BookList() {
+  const {books} = useBookContext();
+
   const renderedBooks = books.map((book) => {
     return (
-      <BookShow onEdit={onEdit} onDelete={onDelete} key={book.id} book={book} />
+      <BookShow  key={book.id} book={book} />
     );
   });
 

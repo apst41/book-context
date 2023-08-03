@@ -1,9 +1,12 @@
 import { useState } from "react";
+import useBookContext from "../hooks/BookContext";
 
 // eslint-disable-next-line react/prop-types
 export default function BookEdit({ book, onSubmit }) {
   // eslint-disable-next-line react/prop-types
   const [title, setTitle] = useState(book.title);
+
+    const { editBookById } = useBookContext();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -11,8 +14,9 @@ export default function BookEdit({ book, onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    onSubmit();
     // eslint-disable-next-line react/prop-types
-    onSubmit(book.id, title);
+      editBookById(book.id, title);
   };
 
   return (
